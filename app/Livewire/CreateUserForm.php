@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Livewire;
-
+ 
+use Livewire\Attributes\Validate; 
 use Livewire\Component;
-use Livewire\Attributes\Validate;
 use App\Models\User;
 
 class CreateUserForm extends Component
 {
+
+    // public ?User $user;
     
     #[Validate('required')]
     public $name = '';
@@ -17,8 +19,17 @@ class CreateUserForm extends Component
     public $email = '';
     #[Validate('required')]
     public $type = '';
+
+    //     public function setUser(User $user)
+    // {
+    //     $this->user = $user;
  
-    public function save()
+    //     $this->name = $user->name;
+ 
+    //     $this->address = $user->address;
+    // }
+
+    public function store()
     {
         $this->validate();
 
@@ -30,6 +41,17 @@ class CreateUserForm extends Component
  
         return $this->redirect(route('kundlista'));
     }
+
+    // public function update()
+    // {
+    //     $this->validate();
+ 
+    //     $this->user->update(
+    //         $this->only(['name', 'address', 'email', 'type'])
+    //     );
+
+    //     return $this->redirect(route('kundlista'));
+    // }
 
     public function render()
     {
