@@ -1,5 +1,8 @@
 <?php
 
+// Defined this controller before moving into Livewire components.
+// Not currently used, but could be useful in case the project would like to move away from Livewire.
+
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
@@ -29,27 +32,21 @@ class UserController extends Controller
         'type' => 'required'
     ]);
     
-    $user = new User();
-
-    // use some sort of 'parse all data as usercredentials, then save all to respective field' to avoid having to update this every time
-
-    // $userCredentials = [
+        $user = new User();
         $user->name = $request->name;
         $user->type = $request->type;
         $user->address = $request->address;
         $user->email = $request->email;
-    // ];
-	// $user->$userCredentials;
 
-    $user->save();
+        $user->save();
 
-    return back();
+        return back();
     }
 
     public function show($id){
         $user = User::find($id);
 
-        return view('editUser', compact('user'));
+        return view(route('kunddetaljer.redigera'), compact('user'));
     }
 
     public function update(Request $request, $id)
